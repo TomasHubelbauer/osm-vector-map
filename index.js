@@ -1,35 +1,26 @@
 window.addEventListener('load', () => {
-  const service = 'xapi';
+  const downloadButton = document.getElementById('downloadButton');
+  downloadButton.addEventListener('click', async () => {
+    const downloadProgress = document.getElementById('downloadProgress');
 
-  navigator.geolocation.getCurrentPosition(
-    async position => {
-      const { longitude, latitude } = position.coords;
+    const response = await fetch('2017-07-03_czech-republic_prague.mbtiles');
+    const total = Number(response.headers.get('content-length'));
+    downloadProgress.max = total;
 
-      // left, bottom, right, top (min long, min lat, max long, max lat)
-      const bounds = [
-        longitude - .00001,
-        latitude - .00001,
-        longitude + .00001,
-        latitude + .00001,
-      ];
+    const typedArray = new Uint8Array(total);
 
-      switch (service) {
-        case 'api': {
-          const response = await fetch(`https://api.openstreetmap.org/api/0.6/map?bbox=${bounds.join()}`);
-          const data = await response.text();
-          console.log(data);
-          break;
-        }
-        case 'xapi': {
-          const response = await fetch(`http://www.overpass-api.de/api/xapi_meta?*[bbox=${bounds.join()}]`);
-          const data = await response.text();
-          console.log(data);
-          break;
-        }
-        default: throw new Error(`Unknown service '${service}'.`);
-      }
-    },
-    error => alert(error.code + ' ' + error.message),
-    { enableHighAccuracy: true },
-  );
+    let loaded = 0;
+    const reader = response.body.getReader();
+    let result;
+
+    while (!(result = await reader.read()).done) {
+      typedArray.set(result.value, loaded);
+      loaded += result.value.length;
+      downloadProgress.value = loaded;
+    }
+
+    const SQL = await initSqlJs({ locateFile: () => 'https://cdn.jsdelivr.net/npm/sql.js@1.0.0/dist/sql-wasm.wasm' });
+    const db = new SQL.Database(typedArray);
+    console.log(db);
+  });
 });

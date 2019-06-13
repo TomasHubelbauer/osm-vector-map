@@ -1,35 +1,29 @@
 # OSM Vector Maps
 
-In the code I experiment with the OSM API and XAPI (Overpass) but both are too
-lame and slow.
+This project uses SQL.js and MBTiles snapshot of Czech Republic's Prague from
+OpenMapTiles (https://openmaptiles.com/downloads/dataset/osm/europe/czech-republic/prague)
+to render the tiles on an HTML5 `canvas`.
 
-OpenMapTiles have an open source version which allows you to get an old snapshot
-of the maps:
+WebSQL by itself, while supported (for now) in Chrome and Safari, wouldn't work
+for this because it doesn't support loading from a file so that's why SQL.js is
+used, which is an Emscripten-compiled SQLite source code to JavaScript.
 
-https://openmaptiles.com/downloads/dataset/osm/europe/czech-republic/prague
+The vector tile database file is loaded upon user gesture and with loading
+indicator, because it is really big (70 MB).
 
-Use https://github.com/kripken/sql.js/ to local the SQLite database
+I am toying around with an idea of using a service worker to cache the file when
+the user clicks the download button and the application determining whether it
+was already downloaded or not by inspecting the `caches` object or issuing a
+request with some marker (header/fragment/query) which would tell the worker to
+actually download if present or fail to indicate not having been cached yet if
+not present.
+
+The worker might break the download indication (worried it will split the
+pipeline into two steps - worker downloads and then the page downloads from the
+cache) so if that's the case, we can try ranged fetch to preserve the ability to
+download with indication as GitHub Pages support ranged requests.
 
 https://github.com/mapbox/mbtiles-spec
 https://sqlite.org/fileformat2.html
 
-I thought WebSQL might work by loading the database from the file but it doesn't
-support that. Which is a shame because both iOS Safari and Chrome support WebSQL
-https://caniuse.com/#search=websql
-
-The file is large (70 MB) so it should be downloaded by explicit user gesture
-and cached (using a service worker). On startup, the app determines if the file
-has been found in the cache by making a reqeuest for it, which if succeeds,
-means the service worker found it. If the request fails, the application knows
-the database file has not been cached yet or has been evicted. To download it
-following a user gesture, the URL has an extra header/param/fragment/whatever so
-that the service worker can tell this request is privileged and can actually be
-downloaded and cached.
-
-https://github.com/TomasHubelbauer/fetch-range-request
-
-https://github.com/TomasHubelbauer/fetch-download-progress
-
-I should also look into visualizing the download or if that's not possible using
-fetch and readable streams (might not work in combination with the service worker)
-then see if GitHub Pages allow range requests.
+- Use a custom SQLite file reader over SQL.js because I don't need writing or SQL querying
