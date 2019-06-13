@@ -1,5 +1,7 @@
 # OSM Vector Maps
 
+[**DEMO**](https://tomashubelbauer.github.io/osm-vector-map)
+
 This project uses SQL.js and MBTiles snapshot of Czech Republic's Prague from
 OpenMapTiles (https://openmaptiles.com/downloads/dataset/osm/europe/czech-republic/prague)
 to render the tiles on an HTML5 `canvas`.
