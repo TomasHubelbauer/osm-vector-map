@@ -26,6 +26,10 @@ following a user gesture, the URL has an extra header/param/fragment/whatever so
 that the service worker can tell this request is privileged and can actually be
 downloaded and cached.
 
+https://github.com/TomasHubelbauer/fetch-range-request
+
+https://github.com/TomasHubelbauer/fetch-download-progress
+
 I should also look into visualizing the download or if that's not possible using
 fetch and readable streams (might not work in combination with the service worker)
 then see if GitHub Pages allow range requests.
