@@ -28,4 +28,5 @@ download with indication as GitHub Pages support ranged requests.
 https://github.com/mapbox/mbtiles-spec
 https://sqlite.org/fileformat2.html
 
-- Use a custom SQLite file reader over SQL.js because I don't need writing or SQL querying
+- Use the custom SQLite file reader I'm building over SQL.js because I don't need
+  writing or SQL querying and SQL.js doesn't look that lean or just good
