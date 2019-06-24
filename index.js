@@ -19,8 +19,7 @@ window.addEventListener('load', () => {
       downloadProgress.value = loaded;
     }
 
-    const SQL = await initSqlJs({ locateFile: () => 'https://cdn.jsdelivr.net/npm/sql.js@1.0.0/dist/sql-wasm.wasm' });
-    const db = new SQL.Database(typedArray);
-    console.log(db);
+    // TODO: Use `sqlite-javascript` to access the database
+    // TODO: Parse the ProtoBuf of the individual tiles
   });
 });
