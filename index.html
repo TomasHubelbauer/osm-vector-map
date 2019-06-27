@@ -4,7 +4,19 @@
     <meta charset="utf-8" />
     <title>OSM Vector Map</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <script src="index.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/photopea/UZIP.js/UZIP.js"></script>
+    <script>
+      /* Unbreak `ieee754` */
+      exports = {};
+      /* Unbreak `Pbf` */
+      module = {};
+      function require() {
+        return exports;
+      }
+    </script>
+    <script src="https://cdn.jsdelivr.net/gh/feross/ieee754/index.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/mapbox/pbf/index.js"></script>
+    <script src="index.js" type="module"></script>
     <link rel="stylesheet" href="index.css" />
   </head>
   <body>

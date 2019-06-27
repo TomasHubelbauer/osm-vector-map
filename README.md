@@ -2,6 +2,12 @@
 
 [**DEMO**](https://tomashubelbauer.github.io/osm-vector-map)
 
+- Implement custom protobuf wire format parser because the MapBox one sucks and
+  there don't seem to be others not requiring the schema
+  - https://github.com/mapbox/pbf
+  - Validate with https://protogen.marcgravell.com/decode
+    - https://github.com/protobuf-net/protobuf-net/blob/master/src/protobuf-net/ProtoReader.cs
+
 In this repository I prototype a vector map tile rendered. I am using an extract
 from the OSM maps provided by OpenMapTiles. I am using the freely available
 snapshot of Prague from 2017-07-03.
