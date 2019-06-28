@@ -1,4 +1,4 @@
-# OSM Vector Maps
+# OSM Vector Map
 
 [**DEMO**](https://tomashubelbauer.github.io/osm-vector-map)
 
@@ -7,6 +7,11 @@
   - https://github.com/mapbox/pbf
   - Validate with https://protogen.marcgravell.com/decode
     - https://github.com/protobuf-net/protobuf-net/blob/master/src/protobuf-net/ProtoReader.cs
+- Check out Qwant maps, they have a public vector tile server
+  - https://www.qwant.com/maps/tiles/ozpoi/14/8853/5549.pbf
+  - Consider merging this with my osm-bitmap-map and allow both bitmap and vector servers!
+  - https://betterweb.qwant.com/qwant-maps-a-open-and-privacy-focused-map
+  - https://www.qwant.com/maps
 
 In this repository I prototype a vector map tile rendered. I am using an extract
 from the OSM maps provided by OpenMapTiles. I am using the freely available
