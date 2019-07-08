@@ -12,6 +12,12 @@
   - Consider merging this with my osm-bitmap-map and allow both bitmap and vector servers!
   - https://betterweb.qwant.com/qwant-maps-a-open-and-privacy-focused-map
   - https://www.qwant.com/maps
+- Check out the Mapy.cz vector tile server (might be just labels?)
+  - https://mapserver.mapy.cz/bing/11-1116-708 this is alternative rasters below? This one is used by the app
+    - https://mapserver.mapy.cz/base-m/8-138-87
+    - https://mapserver.mapy.cz/hybrid-base-m/8-139-86
+  - https://vectmap.mapy.cz/map/online/17/0/data/12-2232-1416.br4 vector tile
+  - https://vectmap.mapy.cz/poi/online/v5/15-2231-1416.br4?zl=11&zh=14&al=en&sl=en POI data
 
 In this repository I prototype a vector map tile rendered. I am using an extract
 from the OSM maps provided by OpenMapTiles. I am using the freely available
