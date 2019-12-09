@@ -2,23 +2,6 @@
 
 [**DEMO**](https://tomashubelbauer.github.io/osm-vector-map)
 
-- Implement custom protobuf wire format parser because the MapBox one sucks and
-  there don't seem to be others not requiring the schema
-  - https://github.com/mapbox/pbf
-  - Validate with https://protogen.marcgravell.com/decode
-    - https://github.com/protobuf-net/protobuf-net/blob/master/src/protobuf-net/ProtoReader.cs
-- Check out Qwant maps, they have a public vector tile server
-  - https://www.qwant.com/maps/tiles/ozpoi/14/8853/5549.pbf
-  - Consider merging this with my osm-bitmap-map and allow both bitmap and vector servers!
-  - https://betterweb.qwant.com/qwant-maps-a-open-and-privacy-focused-map
-  - https://www.qwant.com/maps
-- Check out the Mapy.cz vector tile server (might be just labels?)
-  - https://mapserver.mapy.cz/bing/11-1116-708 this is alternative rasters below? This one is used by the app
-    - https://mapserver.mapy.cz/base-m/8-138-87
-    - https://mapserver.mapy.cz/hybrid-base-m/8-139-86
-  - https://vectmap.mapy.cz/map/online/17/0/data/12-2232-1416.br4 vector tile
-  - https://vectmap.mapy.cz/poi/online/v5/15-2231-1416.br4?zl=11&zh=14&al=en&sl=en POI data
-
 In this repository I prototype a vector map tile rendered. I am using an extract
 from the OSM maps provided by OpenMapTiles. I am using the freely available
 snapshot of Prague from 2017-07-03.
@@ -57,3 +40,28 @@ The worker might break the download indication (worried it will split the
 pipeline into two steps - worker downloads and then the page downloads from the
 cache) so if that's the case, we can try ranged fetch to preserve the ability to
 download with indication as GitHub Pages support ranged requests.
+
+## To-Do
+
+### Implement custom protobuf wire format parser
+
+Because the MapBox one sucks and there don't seem to be others not requiring the schema
+
+- https://github.com/mapbox/pbf
+- Validate with https://protogen.marcgravell.com/decode
+  - https://github.com/protobuf-net/protobuf-net/blob/master/src/protobuf-net/ProtoReader.cs
+
+### Check out Qwant maps, they have a public vector tile server
+
+- https://www.qwant.com/maps/tiles/ozpoi/14/8853/5549.pbf
+- Consider merging this with my osm-bitmap-map and allow both bitmap and vector servers!
+- https://betterweb.qwant.com/qwant-maps-a-open-and-privacy-focused-map
+- https://www.qwant.com/maps
+
+### Check out the Mapy.cz vector tile server (might be just labels?)
+
+- https://mapserver.mapy.cz/bing/11-1116-708 this is alternative rasters below? This one is used by the app
+  - https://mapserver.mapy.cz/base-m/8-138-87
+  - https://mapserver.mapy.cz/hybrid-base-m/8-139-86
+  - https://vectmap.mapy.cz/map/online/17/0/data/12-2232-1416.br4 vector tile
+  - https://vectmap.mapy.cz/poi/online/v5/15-2231-1416.br4?zl=11&zh=14&al=en&sl=en POI data
